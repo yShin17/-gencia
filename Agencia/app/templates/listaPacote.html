@@ -10,7 +10,7 @@
     <!-- Título -->
     <div class="row text-center mb-4 mt-4">
         <div class="col">
-            <h1><strong>Atividades Disponíveis</strong></h1>
+            <h1><strong>Viagens Agendadas</strong></h1>
             <p>Se não achar, basta pesquisar</p>
         </div>
     </div>
@@ -18,14 +18,14 @@
     <!-- Pesquisa -->
     <form method="get" class="row justify-content-center mb-4 w-100">
         <div class="col-5">
-            <input type="text" name="pesquisa" class="form-control" placeholder="O id da sua turma...">
+            <input type="text" name="pesquisa" class="form-control" placeholder="O id da sua viagem...">
         </div>
         <div class="col-2">
             <button type="submit" class="btn btn-dark w-100">Pesquisar</button>
         </div>
     </form>
 
-    <!-- Tabela de turmas -->
+
     <div class="col-12 mt-5">
         <table class="table table-striped">
             <thead>
@@ -49,11 +49,11 @@
                     <td>{{ fec.data_partida.strftime('%d/%m/%Y') }}</td>
                     <td>{{ fec.data_retorno.strftime('%d/%m/%Y') }}</td>
                     <td>
-                        
+                  
                         <form action="{{ url_for('cancelar', id=fec.id) }}" method="POST" style="display:inline;">
                             <button type="submit" class="btn btn-outline-danger btn-sm">Cancelar</button>
                         </form>
-                    
+                     
                     </td>
                 </tr>
                 {% endfor %}

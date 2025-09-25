@@ -14,7 +14,7 @@
     <!-- Título -->
     <div class="row text-center mb-4 mt-4">
         <div class="col">
-            <h1><strong>Turmas Disponíveis</strong></h1>
+            <h1><strong>Viagens Disponíveis</strong></h1>
             
                 <p> Se não achar, basta pesquisar</p>
                 {% if current_user.is_authenticated and current_user.email.endswith('@adm.com') %}
@@ -23,7 +23,7 @@
         </div>
     </div>
 
-    <!-- Pesquisa -->
+
     <form method="get" class="row justify-content-center mb-4 w-100">
         <div class="col-5">
             <input type="text" name="pesquisa" class="form-control" placeholder="O id da sua turma...">
