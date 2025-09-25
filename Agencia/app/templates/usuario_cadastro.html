@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+
+{% block title %} Cadastro {% endblock %}
+
+
+{% block head %} {% endblock %}
+
+
+{% block content %}
+
+<section class="container">
+
+
+    <div class="row text-center mb-4 mt-3">
+        <div class="col">
+            <h1><strong>Bem-vindo ao cadastro</strong></h1>
+            <h3>Cadastre-se</h3>
+        </div>
+    </div>
+
+ 
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <form action="" method="post" class="border rounded p-4 shadow-sm bg-white">
+                {{ form.csrf_token }}
+
+                <div class="mb-3">
+                    {{ form.nome.label(class="form-label") }}
+                    {{ form.nome(class="form-control") }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.sobrenome.label(class="form-label") }}
+                    {{ form.sobrenome(class="form-control") }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.email.label(class="form-label") }}
+                    {{ form.email(class="form-control") }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.senha.label(class="form-label") }}
+                    {{ form.senha(class="form-control") }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.confirmacao_senha.label(class="form-label") }}
+                    {{ form.confirmacao_senha(class="form-control") }}
+                </div>
+
+                {{ form.btnSubmit(class="btn btn-dark w-100 mt-3") }}
+            </form>
+        </div>
+    </div>
+
+  
+    <div class="row justify-content-center mt-3">
+        <div class="col-auto">
+            <span>Já tem conta? </span>
+            <a href="{{ url_for('LoginPage') }}" class="text-primary fw-bold">Clique aqui</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+
+{% block title %} Página Inicial {% endblock %}
+
+
+{% block head %} {% endblock %}
+
+
+{% block content %}
+
+<section class="container">
+
+    <!-- Título -->
+    <div class="row text-center mb-4 mt-4">
+        <div class="col">
+            <h1><strong>Turmas Disponíveis</strong></h1>
+            
+                <p> Se não achar, basta pesquisar</p>
+                {% if current_user.is_authenticated and current_user.email.endswith('@adm.com') %}
+                <p> Quer adicionar Pacotes? <a href="{{ url_for('cadastrarPacotes') }}">Clique aqui</a></p>
+                {% endif %}
+        </div>
+    </div>
+
+    <!-- Pesquisa -->
+    <form method="get" class="row justify-content-center mb-4 w-100">
+        <div class="col-5">
+            <input type="text" name="pesquisa" class="form-control" placeholder="O id da sua turma...">
+        </div>
+        <div class="col-2">
+            <button type="submit" class="btn btn-dark w-100">Pesquisar</button>
+        </div>
+    </form>
+
+    <!-- Tabela de turmas -->
+    <div class="col-12 mt-5">
+        <table class="table">
+            <thead>
+                <th>ID</th>
+                <th>Quantidade de Pessoas</th>
+                <th>Nome</th>
+                <th>Destino</th>
+                <th>Preço</th>
+                <th>Disponibilidade</th>
+                <th>Categoria</th>
+                {% if current_user.is_authenticated and current_user.email.endswith('@professor.com') %}
+                <th>Excluir</th>
+                {% endif %}
+            </thead>
+
+            <tbody>
+                {% for linha in context['dados'] %}
+                <tr>
+                    <td>{{ linha.id }}</td>
+                    <td>{{ linha.Pessoas }}</td>
+                    <td>{{ linha.Nome }}</td>
+                    <td>{{ linha.Destino }}</td>
+                    <td>{{ linha.preco }}</td>
+                    <td>{{ linha.disponibilidade }}</td>
+                    <td>{{ linha.categoria }}</td>
+                    <td>
+                        {% if linha.disponibilidade %}
+                        <a href="{{ url_for('pacote', id=linha.id) }}" class="btn btn-outline-dark">Cadastrar-se no pacote</a>
+                        {% else %}
+                        <span class="text-muted">Indisponível</span>
+                        {% endif %}
+
+                    </td>
+                    
+                
+                    <td>
+                        {% if current_user.is_authenticated and current_user.email.endswith('@adm.com') %}
+                        <form action="{{ url_for('delete', id=linha.id) }}" method="POST" style="display:inline;">
+                            <button type="submit" class="btn btn-outline-danger">Excluir</button>
+                        </form>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</section>
+
+{% endblock %}
